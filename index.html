@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সততা প্রি ক্যাডেট স্কুল | ফলাফল পোর্টাল</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Hero (logo + school name + tagline, gradient like the reference) -->
+  <header class="hero">
+    <div class="hero-cap">
+      <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
+        <path d="M32 10 6 22l26 11 26-11z" fill="#F4B740"/>
+        <path d="M16 27v13c0 4.4 7.2 9 16 9s16-4.6 16-9V27" stroke="#F4B740" stroke-width="3" fill="none"/>
+        <circle cx="58" cy="23" r="2.2" fill="#F4B740"/>
+        <path d="M58 23v9" stroke="#F4B740" stroke-width="2"/>
+      </svg>
+    </div>
+    <h1>সততা প্রি ক্যাডেট স্কুল</h1>
+    <p>বার্ষিক পরীক্ষা - ফলাফল প্রকাশনা পোর্টাল</p>
+  </header>
+
+  <!-- Notice ticker -->
+  <div class="ticker">
+    <span class="ticker-badge">📢 নোটিশঃ</span>
+    <div class="ticker-track">
+      <span id="tickerText">ফলাফল প্রকাশিত হয়েছে! | 🎓 প্লে থেকে পঞ্চম শ্রেণীর শিক্ষার্থীরা নিচে ক্লাস ও রোল নম্বর দিয়ে ফলাফল দেখতে পারবে।</span>
+    </div>
+  </div>
+
+  <!-- Search card -->
+  <main class="wrap">
+    <section class="card search-card">
+      <div class="card-title">
+        <span class="star">★</span> ফলাফল অনুসন্ধান করুন
+      </div>
+
+      <label class="field-label" for="classSelect">শ্রেণী নির্বাচন করুন (SELECT CLASS)</label>
+      <select id="classSelect" class="input">
+        <option value="">লোড হচ্ছে...</option>
+      </select>
+
+      <label class="field-label" for="rollInput">রোল নম্বর (ROLL NUMBER)</label>
+      <input id="rollInput" class="input" type="number" inputmode="numeric" placeholder="যেমনঃ 2" />
+
+      <button id="searchBtn" class="btn-primary">
+        <span class="icon">🔍</span> ফলাফল দেখুন
+      </button>
+
+      <p id="statusMsg" class="status-msg"></p>
+    </section>
+
+    <!-- Result card (hidden until search) -->
+    <section id="resultCard" class="card result-card hidden">
+      <div class="result-watermark">🎓</div>
+
+      <div class="result-top">
+        <span class="ribbon">ফলাফল কার্ড</span>
+        <div id="gpaSeal" class="gpa-seal">
+          <span id="gpaValue">-</span>
+          <small>GPA</small>
+        </div>
+      </div>
+
+      <div class="student-info">
+        <h2 id="studentName">-</h2>
+        <div class="info-grid">
+          <div><span>শ্রেণীঃ</span><b id="infoClass">-</b></div>
+          <div><span>রোলঃ</span><b id="infoRoll">-</b></div>
+          <div><span>পিতার নামঃ</span><b id="infoFather">-</b></div>
+          <div><span>ফলাফলঃ</span><b id="infoResult">-</b></div>
+        </div>
+      </div>
+
+      <table class="marks-table">
+        <thead>
+          <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th></tr>
+        </thead>
+        <tbody id="marksBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 সততা প্রি ক্যাডেট স্কুল — সকল অধিকার সংরক্ষিত</p>
+  </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
