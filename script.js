@@ -1,6 +1,6 @@
 // ---- কনফিগ ----
 // META_COLUMNS: এগুলো বিষয় (subject) হিসেবে গণ্য হবে না, বাকি সব কলাম বিষয় হিসেবে দেখানো হবে
-const META_COLUMNS = ["class", "roll", "name", "father", "father name", "gpa", "result"];
+const META_COLUMNS = ["class", "roll", "name", "father", "father name", "percentage" , "Grade" , "gpa", "result"];
 
 let allRows = [];
 
