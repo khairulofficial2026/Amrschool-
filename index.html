@@ -60,69 +60,60 @@
     </footer>
   </div>
 
-  <!-- ============ পেইজ ২: রেজাল্ট পেইজ ============ -->
+  <!-- ============ পেইজ ২: রেজাল্ট পেইজ (একক শিক্ষার্থী) ============ -->
   <div id="resultPage" class="page">
     <main class="wrap">
-
       <button id="backBtn" class="btn-back no-print">← আবার খুঁজুন</button>
 
-      <section id="resultCard" class="card result-card">
-        <div class="report-outer">
-          <div class="report-inner">
-
-            <div class="report-header">
-              <h2 id="schoolNameR">সততা প্রি ক্যাডেট স্কুল</h2>
-              <p class="report-address">📍 <span id="schoolAddress">-</span> &nbsp;|&nbsp; ✉ <span id="schoolEmail">-</span></p>
-              <p class="report-meta">স্থাপিতঃ <span id="schoolEstd">-</span> খ্রি. | বার্ষিক পরীক্ষার অগ্রগতি প্রতিবেদন</p>
-            </div>
-
-            <div id="stampBadge" class="stamp">
-              <span>RESULT</span>
-              <strong id="stampText">PASSED</strong>
-            </div>
-
-            <div class="student-block">
-              <div class="student-row"><span>নাম (Name):</span><b id="studentName">-</b></div>
-              <div class="student-row"><span>শ্রেণী (Class):</span><b id="infoClass">-</b></div>
-              <div class="student-row"><span>রোল (Roll No):</span><b id="infoRoll">-</b></div>
-            </div>
-
-            <table class="marks-table">
-              <thead>
-                <tr>
-                  <th>SUBJECT</th><th>MAX MARKS</th><th>OBTAINED</th><th>PERCENTAGE</th><th>GRADE</th><th>RESULT</th>
-                </tr>
-              </thead>
-              <tbody id="marksBody"></tbody>
-              <tfoot>
-                <tr id="grandTotalRow"></tr>
-              </tfoot>
-            </table>
-
-            <div class="remarks-box">
-              <span>মন্তব্য (Remarks):</span> <em id="remarksText">-</em>
-            </div>
-
-            <div class="sign-row">
-              <div><span class="sign-line"></span>অভিভাবকের স্বাক্ষর</div>
-              <div><span class="sign-line"></span>শ্রেণী শিক্ষকের স্বাক্ষর</div>
-              <div><span class="sign-line"></span>প্রধান শিক্ষকের স্বাক্ষর</div>
-            </div>
-
-            <div class="report-footer">
-              <span>এই রিপোর্ট কার্ডটি ডিজিটালভাবে তৈরি করা হয়েছে।</span>
-              <span id="issueDate">-</span>
-            </div>
-
-          </div>
-        </div>
-
-        <button id="printBtn" class="btn-secondary no-print">🖨️ প্রিন্ট / PDF ডাউনলোড করুন</button>
+      <section class="card result-card">
+        <div id="reportContainer"></div>
+        <button id="downloadBtn" class="btn-primary no-print">⬇️ ডাউনলোড করুন (PDF)</button>
+        <button id="printBtn" class="btn-secondary no-print">🖨️ প্রিন্ট করুন</button>
+        <p id="downloadStatus" class="status-msg"></p>
       </section>
     </main>
   </div>
 
+  <!-- ============ পেইজ ৩: এডমিন প্যানেল ============ -->
+  <div id="adminPage" class="page">
+    <main class="wrap">
+      <button id="adminBackBtn" class="btn-back no-print">← মূল পেইজে ফিরে যান</button>
+
+      <!-- লগইন ফর্ম -->
+      <section id="adminLogin" class="card search-card no-print">
+        <div class="card-title">🔒 এডমিন লগইন</div>
+        <label class="field-label" for="adminPassword">পাসওয়ার্ড দিন</label>
+        <input id="adminPassword" class="input" type="password" placeholder="পাসওয়ার্ড" />
+        <button id="adminLoginBtn" class="btn-primary">
+          <span class="icon">🔑</span> প্রবেশ করুন
+        </button>
+        <p id="adminLoginMsg" class="status-msg"></p>
+      </section>
+
+      <!-- লগইনের পর কন্ট্রোল প্যানেল -->
+      <section id="adminControls" class="card search-card no-print hidden">
+        <div class="card-title">🖨️ সব রেজাল্ট কার্ড প্রিন্ট করুন</div>
+
+        <label class="field-label" for="adminClassSelect">শ্রেণী নির্বাচন করুন</label>
+        <select id="adminClassSelect" class="input">
+          <option value="">লোড হচ্ছে...</option>
+        </select>
+
+        <button id="adminPrintBtn" class="btn-primary">
+          <span class="icon">🖨️</span> রেজাল্ট কার্ড তৈরি করুন
+        </button>
+
+        <p id="adminStatusMsg" class="status-msg"></p>
+      </section>
+
+      <!-- সব কার্ড এখানে জেনারেট হবে -->
+      <div id="adminPrintArea"></div>
+    </main>
+  </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="config.js"></script>
 <script src="script.js"></script>
 </body>
