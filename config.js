@@ -1,8 +1,24 @@
 // ================================
-// এখানে আপনার Google Sheet এর "Publish to web" CSV লিংক বসান
-// কীভাবে বের করবেন তার নিয়ম README.md ফাইলে দেওয়া আছে
+// একাধিক Google Sheet ব্যবহার করতে চাইলে (প্রতিটা ক্লাসের জন্য আলাদা শীট)
+// এই লিস্টে সবগুলো "Publish to web" CSV লিংক একটার পর একটা বসান, কমা দিয়ে আলাদা করে
+// একটা শীট হলেও এভাবেই বসাবেন — শুধু একটা লিংক থাকবে লিস্টে
+// কীভাবে CSV লিংক বের করবেন তার নিয়ম README.md ফাইলে দেওয়া আছে
 // ================================
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRWXfmhb480HkYvS3CWWnPnDgTTKKTCGLBAAPsJgu4zXJ_xdESXLvQYNsrY6cmRg/pub?gid=1161613645&single=true&output=csv";
+const SHEET_CSV_URLS = [
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRWXfmhb480HkYvS3CWWnPnDgTTKKTCGLBAAPsJgu4zXJ_xdESXLvQYNsrY6cmRg/pub?gid=1161613645&single=true&output=csv",
+  "PASTE_CLASS_2_SHEET_CSV_LINK_HERE",
+  "PASTE_CLASS_3_SHEET_CSV_LINK_HERE",
+  "PASTE_CLASS_4_SHEET_CSV_LINK_HERE",
+  "PASTE_CLASS_5_SHEET_CSV_LINK_HERE",
+  "PASTE_CLASS_6_SHEET_CSV_LINK_HERE",
+  "PASTE_CLASS_7_SHEET_CSV_LINK_HERE"
+];
+
+// ================================
+// এডমিন প্যানেলের পাসওয়ার্ড (বদলে দিন, শক্তিশালী পাসওয়ার্ড দিন)
+// মনে রাখবেন: এটা কোডেই লেখা থাকে, তাই খুব উচ্চ-নিরাপত্তার জন্য উপযুক্ত না
+// ================================
+const ADMIN_PASSWORD = "sotota2026";
 
 // ================================
 // স্কুলের তথ্য (রিপোর্ট কার্ডের হেডারে দেখাবে)
