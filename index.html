@@ -10,84 +10,117 @@
 </head>
 <body>
 
-  <!-- Hero (logo + school name + tagline, gradient like the reference) -->
-  <header class="hero">
-    <div class="hero-cap">
-      <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
-        <path d="M32 10 6 22l26 11 26-11z" fill="#F4B740"/>
-        <path d="M16 27v13c0 4.4 7.2 9 16 9s16-4.6 16-9V27" stroke="#F4B740" stroke-width="3" fill="none"/>
-        <circle cx="58" cy="23" r="2.2" fill="#F4B740"/>
-        <path d="M58 23v9" stroke="#F4B740" stroke-width="2"/>
-      </svg>
-    </div>
-    <h1>সততা প্রি ক্যাডেট স্কুল</h1>
-    <p>বার্ষিক পরীক্ষা - ফলাফল প্রকাশনা পোর্টাল</p>
-  </header>
+  <!-- ============ পেইজ ১: সার্চ পেইজ ============ -->
+  <div id="searchPage" class="page active">
 
-  <!-- Notice ticker -->
-  <div class="ticker">
-    <span class="ticker-badge">📢 নোটিশঃ</span>
-    <div class="ticker-track">
-      <span id="tickerText">ফলাফল প্রকাশিত হয়েছে! | 🎓 প্লে থেকে পঞ্চম শ্রেণীর শিক্ষার্থীরা নিচে ক্লাস ও রোল নম্বর দিয়ে ফলাফল দেখতে পারবে।</span>
+    <header class="hero no-print">
+      <div class="hero-cap">
+        <svg viewBox="0 0 64 64" width="52" height="52" fill="none">
+          <path d="M32 10 6 22l26 11 26-11z" fill="#F4B740"/>
+          <path d="M16 27v13c0 4.4 7.2 9 16 9s16-4.6 16-9V27" stroke="#F4B740" stroke-width="3" fill="none"/>
+          <circle cx="58" cy="23" r="2.2" fill="#F4B740"/>
+          <path d="M58 23v9" stroke="#F4B740" stroke-width="2"/>
+        </svg>
+      </div>
+      <h1>সততা প্রি ক্যাডেট স্কুল</h1>
+      <p>বার্ষিক পরীক্ষা - ফলাফল প্রকাশনা পোর্টাল</p>
+    </header>
+
+    <div class="ticker no-print">
+      <span class="ticker-badge">📢 নোটিশঃ</span>
+      <div class="ticker-track">
+        <span id="tickerText">ফলাফল প্রকাশিত হয়েছে! | 🎓 প্লে থেকে পঞ্চম শ্রেণীর শিক্ষার্থীরা নিচে ক্লাস ও রোল নম্বর দিয়ে ফলাফল দেখতে পারবে।</span>
+      </div>
     </div>
+
+    <main class="wrap">
+      <section class="card search-card no-print">
+        <div class="card-title">
+          <span class="star">★</span> ফলাফল অনুসন্ধান করুন
+        </div>
+
+        <label class="field-label" for="classSelect">শ্রেণী নির্বাচন করুন (SELECT CLASS)</label>
+        <select id="classSelect" class="input">
+          <option value="">লোড হচ্ছে...</option>
+        </select>
+
+        <label class="field-label" for="rollInput">রোল নম্বর (ROLL NUMBER)</label>
+        <input id="rollInput" class="input" type="number" inputmode="numeric" placeholder="যেমনঃ 2" />
+
+        <button id="searchBtn" class="btn-primary">
+          <span class="icon">🔍</span> ফলাফল দেখুন
+        </button>
+
+        <p id="statusMsg" class="status-msg"></p>
+      </section>
+    </main>
+
+    <footer class="footer no-print">
+      <p>© 2026 সততা প্রি ক্যাডেট স্কুল — সকল অধিকার সংরক্ষিত</p>
+    </footer>
   </div>
 
-  <!-- Search card -->
-  <main class="wrap">
-    <section class="card search-card">
-      <div class="card-title">
-        <span class="star">★</span> ফলাফল অনুসন্ধান করুন
-      </div>
+  <!-- ============ পেইজ ২: রেজাল্ট পেইজ ============ -->
+  <div id="resultPage" class="page">
+    <main class="wrap">
 
-      <label class="field-label" for="classSelect">শ্রেণী নির্বাচন করুন (SELECT CLASS)</label>
-      <select id="classSelect" class="input">
-        <option value="">লোড হচ্ছে...</option>
-      </select>
+      <button id="backBtn" class="btn-back no-print">← আবার খুঁজুন</button>
 
-      <label class="field-label" for="rollInput">রোল নম্বর (ROLL NUMBER)</label>
-      <input id="rollInput" class="input" type="number" inputmode="numeric" placeholder="যেমনঃ 2" />
+      <section id="resultCard" class="card result-card">
+        <div class="report-outer">
+          <div class="report-inner">
 
-      <button id="searchBtn" class="btn-primary">
-        <span class="icon">🔍</span> ফলাফল দেখুন
-      </button>
+            <div class="report-header">
+              <h2 id="schoolNameR">সততা প্রি ক্যাডেট স্কুল</h2>
+              <p class="report-address">📍 <span id="schoolAddress">-</span> &nbsp;|&nbsp; ✉ <span id="schoolEmail">-</span></p>
+              <p class="report-meta">স্থাপিতঃ <span id="schoolEstd">-</span> খ্রি. | বার্ষিক পরীক্ষার অগ্রগতি প্রতিবেদন</p>
+            </div>
 
-      <p id="statusMsg" class="status-msg"></p>
-    </section>
+            <div id="stampBadge" class="stamp">
+              <span>RESULT</span>
+              <strong id="stampText">PASSED</strong>
+            </div>
 
-    <!-- Result card (hidden until search) -->
-    <section id="resultCard" class="card result-card hidden">
-      <div class="result-watermark">🎓</div>
+            <div class="student-block">
+              <div class="student-row"><span>নাম (Name):</span><b id="studentName">-</b></div>
+              <div class="student-row"><span>শ্রেণী (Class):</span><b id="infoClass">-</b></div>
+              <div class="student-row"><span>রোল (Roll No):</span><b id="infoRoll">-</b></div>
+            </div>
 
-      <div class="result-top">
-        <span class="ribbon">ফলাফল কার্ড</span>
-        <div id="gpaSeal" class="gpa-seal">
-          <span id="gpaValue">-</span>
-          <small>GPA</small>
+            <table class="marks-table">
+              <thead>
+                <tr>
+                  <th>SUBJECT</th><th>MAX MARKS</th><th>OBTAINED</th><th>PERCENTAGE</th><th>GRADE</th><th>RESULT</th>
+                </tr>
+              </thead>
+              <tbody id="marksBody"></tbody>
+              <tfoot>
+                <tr id="grandTotalRow"></tr>
+              </tfoot>
+            </table>
+
+            <div class="remarks-box">
+              <span>মন্তব্য (Remarks):</span> <em id="remarksText">-</em>
+            </div>
+
+            <div class="sign-row">
+              <div><span class="sign-line"></span>অভিভাবকের স্বাক্ষর</div>
+              <div><span class="sign-line"></span>শ্রেণী শিক্ষকের স্বাক্ষর</div>
+              <div><span class="sign-line"></span>প্রধান শিক্ষকের স্বাক্ষর</div>
+            </div>
+
+            <div class="report-footer">
+              <span>এই রিপোর্ট কার্ডটি ডিজিটালভাবে তৈরি করা হয়েছে।</span>
+              <span id="issueDate">-</span>
+            </div>
+
+          </div>
         </div>
-      </div>
 
-      <div class="student-info">
-        <h2 id="studentName">-</h2>
-        <div class="info-grid">
-          <div><span>শ্রেণীঃ</span><b id="infoClass">-</b></div>
-          <div><span>রোলঃ</span><b id="infoRoll">-</b></div>
-          <div><span>পিতার নামঃ</span><b id="infoFather">-</b></div>
-          <div><span>ফলাফলঃ</span><b id="infoResult">-</b></div>
-        </div>
-      </div>
-
-      <table class="marks-table">
-        <thead>
-          <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th></tr>
-        </thead>
-        <tbody id="marksBody"></tbody>
-      </table>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© 2026 সততা প্রি ক্যাডেট স্কুল — সকল অধিকার সংরক্ষিত</p>
-  </footer>
+        <button id="printBtn" class="btn-secondary no-print">🖨️ প্রিন্ট / PDF ডাউনলোড করুন</button>
+      </section>
+    </main>
+  </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="config.js"></script>
