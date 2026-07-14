@@ -70,6 +70,19 @@ body{
   100%{transform:translateX(-100%);}
 }
 
+/* Page switching */
+.page{display:none;}
+.page.active{display:block;}
+
+.btn-back{
+  display:inline-flex;align-items:center;gap:6px;
+  margin:20px 0 6px;padding:10px 18px;
+  border:1.5px solid var(--line);border-radius:12px;
+  background:#fff;color:#0f8a52;font-weight:700;font-size:.88rem;
+  font-family:'Hind Siliguri',sans-serif;cursor:pointer;
+}
+.btn-back:active{transform:scale(.97);}
+
 /* Layout */
 .wrap{
   max-width:520px;
@@ -130,53 +143,111 @@ select.input{
   color:var(--red);font-weight:600;min-height:1em;
 }
 
-/* Result card */
-.result-card{position:relative;overflow:hidden;}
+/* Result report card */
 .result-card.hidden{display:none;}
-.result-watermark{
-  position:absolute;right:-10px;bottom:-10px;
-  font-size:7rem;opacity:.05;
+.result-card{padding:0;background:transparent;box-shadow:none;}
+.report-outer{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 16px 40px rgba(20,60,50,.14);
 }
-.result-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-.ribbon{
-  background:#158a4e;color:#fff;
-  font-size:.78rem;font-weight:700;
-  padding:7px 15px;border-radius:9px;
+.report-inner{
+  border:2px solid #17a06f;
+  border-radius:12px;
+  padding:22px 20px;
+  position:relative;
 }
-.gpa-seal{
-  width:66px;height:66px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,var(--gold),#d99a1e);
-  color:#3a2a00;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  font-family:'JetBrains Mono',monospace;font-weight:700;
-  box-shadow:0 6px 14px rgba(212,155,30,.4);
-  flex-shrink:0;
-}
-#gpaValue{font-size:1.1rem;line-height:1;}
-.gpa-seal small{font-size:.55rem;font-weight:600;}
 
-.student-info h2{
+.report-header{text-align:center;margin-bottom:14px;}
+.report-header h2{
   font-family:'Baloo Da 2',sans-serif;
-  font-size:1.3rem;margin:0 0 14px;color:var(--ink);
+  color:#0f8a52;font-size:1.3rem;margin:0 0 6px;
 }
-.info-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;
-  margin-bottom:20px;
-}
-.info-grid div{font-size:.85rem;}
-.info-grid span{color:var(--muted);margin-right:4px;}
-.info-grid b{color:var(--ink);}
+.report-address{font-size:.78rem;color:#3a4a44;margin:0 0 4px;}
+.report-meta{font-size:.75rem;color:var(--muted);margin:0;}
 
-.marks-table{width:100%;border-collapse:collapse;font-size:.9rem;}
+.stamp{
+  position:absolute;top:14px;right:14px;
+  border:2px dashed;border-radius:10px;
+  padding:6px 10px;text-align:center;
+  transform:rotate(-8deg);
+  line-height:1.15;
+  font-family:'JetBrains Mono',monospace;
+}
+.stamp span{display:block;font-size:.6rem;font-weight:700;letter-spacing:1px;}
+.stamp strong{display:block;font-size:.85rem;letter-spacing:.5px;}
+.stamp.pass{border-color:#17a06f;color:#0f8a52;}
+.stamp.fail{border-color:var(--red);color:var(--red);}
+
+.student-block{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:14px 0;margin:14px 0 18px;
+}
+.student-row{
+  display:flex;justify-content:space-between;
+  font-size:.9rem;padding:5px 0;flex-wrap:wrap;gap:4px;
+}
+.student-row span{color:var(--muted);}
+.student-row b{color:var(--ink);font-weight:700;}
+
+.marks-table{width:100%;border-collapse:collapse;font-size:.78rem;}
 .marks-table th{
-  text-align:left;background:#158a4e;color:#fff;
-  padding:11px 14px;font-weight:600;
+  text-align:center;background:#0f8a52;color:#fff;
+  padding:9px 6px;font-weight:700;font-size:.68rem;
+  letter-spacing:.3px;
 }
-.marks-table th:last-child,.marks-table td:last-child{text-align:right;}
-.marks-table td{padding:11px 14px;border-bottom:1px solid var(--line);}
+.marks-table td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:center;}
+.marks-table td:first-child,.marks-table th:first-child{text-align:left;}
 .marks-table tr:nth-child(even){background:#f7fbfa;}
+.marks-table tfoot tr{font-weight:800;border-top:2px solid var(--ink);}
+.marks-table tfoot td{padding:10px 6px;}
 
-.result-pass{color:#0a8a4a;font-weight:700;}
-.result-fail{color:var(--red);font-weight:700;}
+.cell-pass{color:#0a8a4a;font-weight:700;}
+.cell-fail{color:var(--red);font-weight:700;}
+
+.remarks-box{
+  margin:18px 0;padding:12px 14px;
+  border:1px dashed #d9c874;background:#fffbe8;
+  border-radius:10px;font-size:.85rem;
+}
+.remarks-box span{font-weight:700;color:var(--ink);}
+.remarks-box em{color:#4a4530;}
+
+.sign-row{
+  display:flex;justify-content:space-between;
+  margin:34px 0 10px;gap:10px;flex-wrap:wrap;
+}
+.sign-row div{
+  flex:1;min-width:90px;text-align:center;
+  font-size:.68rem;color:var(--muted);
+}
+.sign-line{
+  display:block;border-top:1px solid var(--ink);
+  margin-bottom:6px;
+}
+
+.report-footer{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;
+  font-size:.65rem;color:var(--muted);
+  border-top:1px solid var(--line);padding-top:10px;margin-top:6px;
+}
+
+.btn-secondary{
+  width:100%;margin-top:16px;padding:14px;
+  border:1.5px solid #0f8a52;border-radius:14px;
+  background:#fff;color:#0f8a52;font-size:.95rem;font-weight:700;
+  font-family:'Hind Siliguri',sans-serif;cursor:pointer;
+}
+.btn-secondary:active{transform:scale(.98);}
+
+@media print{
+  .no-print{display:none !important;}
+  body{background:#fff;}
+  .wrap{padding:0;max-width:100%;}
+  .report-outer{box-shadow:none;border:none;}
+}
 
 .footer{text-align:center;padding:20px;font-size:.78rem;color:var(--muted);}
