@@ -251,3 +251,13 @@ select.input{
 }
 
 .footer{text-align:center;padding:20px;font-size:.78rem;color:var(--muted);}
+
+.hidden{display:none !important;}
+
+/* একাধিক রেজাল্ট কার্ড প্রিন্টের জন্য (এডমিন প্যানেল) */
+#adminPrintArea{margin-top:20px;}
+.print-page{margin-bottom:24px;}
+@media print{
+  .print-page{page-break-after:always;}
+  .print-page:last-child{page-break-after:auto;}
+}
