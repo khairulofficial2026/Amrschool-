@@ -5,18 +5,18 @@
 Google Sheet এ প্রথম সারিতে (row 1) এই কলাম হেডারগুলো বসান — বানান হুবহু এমনই হতে হবে:
 
 ```
-Class | Roll | Name | Father Name | Bangla | English | Math | Science | Religion | GPA | Result
+Class | Roll | Name | Bangla | English | Math | Remarks
 ```
 
-- **Class, Roll, Name, Father Name, GPA, Result** — এই কলামগুলোর নাম বদলাবেন না।
-- **Bangla, English, Math...** — এই বিষয়গুলো আপনি ইচ্ছামতো যোগ/বাদ/নাম পরিবর্তন করতে পারবেন, সাইট নিজে থেকেই সব বিষয় কলাম ধরে নেবে।
-- প্রতিটা স্টুডেন্টের জন্য একটা করে সারি (row) পূরণ করুন।
-- Result কলামে লিখুন: `Pass` / `Fail` অথবা `উত্তীর্ণ` / `অনুত্তীর্ণ`
+- **Class, Roll, Name** — এই কলামগুলোর নাম বদলাবেন না।
+- **Bangla, English, Math...** — এই বিষয়গুলোতে শুধু নাম্বার (যেমন ৯৫, ৮৮) বসাবেন, ১০০ এর মধ্যে। বিষয় ইচ্ছামতো যোগ/বাদ দিতে পারবেন — কিন্তু নতুন বিষয় যোগ করলে `config.js` এর `SUBJECT_LABELS` এ সেটার বাংলা নামও যোগ করে দিতে হবে (নাহলে ইংরেজি কলাম নামটাই দেখাবে)।
+- **Remarks** (ঐচ্ছিক) — শিক্ষকের মন্তব্য, ফাঁকা রাখলে অটো মন্তব্য বসবে।
+- GPA, গ্রেড, পাশ/ফেল — এসব **স্বয়ংক্রিয়ভাবে হিসাব হয়ে যাবে**, আলাদা কলাম লাগবে না।
 
 উদাহরণ:
 ```
-Class      Roll  Name           Father Name   Bangla  English  Math  GPA   Result
-Play Group 2     রাফি হাসান     করিম হাসান    85      80       90    5.00  Pass
+Class      Roll  Name             Bangla  English  Math  Remarks
+Play Group 1     Samiul Islam Aarav  95    92       88    চমৎকার ফলাফল!
 ```
 
 ## ধাপ ২: Google Sheet পাবলিশ করুন (CSV হিসেবে)
@@ -28,18 +28,27 @@ Play Group 2     রাফি হাসান     করিম হাসান  
 3. **Publish** বাটনে চাপুন → একটা লিংক পাবেন, সেটা কপি করুন
    (লিংকটা এরকম দেখতে হবে: `https://docs.google.com/spreadsheets/d/e/xxxx/pub?output=csv`)
 
-## ধাপ ৩: লিংক কোডে বসান
+## ধাপ ৩: config.js পূরণ করুন
 
-`config.js` ফাইল খুলুন, এই লাইনটা খুঁজুন:
-
-```js
-const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_CSV_LINK_HERE";
-```
-
-`PASTE_YOUR_PUBLISHED_CSV_LINK_HERE` এর জায়গায় আপনার কপি করা CSV লিংকটা বসিয়ে দিন। যেমন:
+`config.js` ফাইল খুলুন এবং এই জিনিসগুলো বসান:
 
 ```js
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/xxxx/pub?output=csv";
+const SHEET_CSV_URL = "আপনার CSV লিংক এখানে";
+
+const SCHOOL_INFO = {
+  name: "সততা প্রি ক্যাডেট স্কুল",
+  address: "আপনার স্কুলের ঠিকানা",
+  email: "আপনার ইমেইল",
+  established: 2008
+};
+
+const MAX_MARKS_PER_SUBJECT = 100; // প্রতি বিষয়ে সর্বোচ্চ নম্বর
+
+const SUBJECT_LABELS = {
+  "bangla": "বাংলা (Bangla)",
+  "english": "ইংরেজি (English)"
+  // নতুন বিষয় যোগ করলে এখানে যোগ করুন — বাম পাশে ছোট হাতের অক্ষরে Sheet কলাম নাম
+};
 ```
 
 ## ধাপ ৪: GitHub এ আপলোড করুন
@@ -49,6 +58,24 @@ const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/xxxx/pub?output=
 3. রিপোর **Settings → Pages** এ যান
 4. Source এ **Branch: main / (root)** সিলেক্ট করে Save করুন
 5. কিছুক্ষণ পর আপনার সাইট লাইভ হবে: `https://আপনার-ইউজারনেম.github.io/রিপোর-নাম/`
+
+## গ্রেডিং স্কেল (স্বয়ংক্রিয় হিসাব)
+
+| শতকরা নম্বর | গ্রেড | 
+|---|---|
+| ৮০-১০০ | A+ |
+| ৭০-৭৯ | A |
+| ৬০-৬৯ | A- |
+| ৫০-৫৯ | B |
+| ৪০-৪৯ | C |
+| ৩৩-৩৯ | D |
+| ০-৩২ | F (Fail) |
+
+যেকোনো একটা বিষয়ে F আসলে সামগ্রিক ফলাফল "FAILED" দেখাবে।
+
+## প্রিন্ট / PDF ডাউনলোড
+
+ফলাফল কার্ডের নিচে "🖨️ প্রিন্ট / PDF ডাউনলোড করুন" বাটনে চাপলে ব্রাউজারের প্রিন্ট ডায়ালগ খুলবে — সেখান থেকে "Save as PDF" সিলেক্ট করলে সুন্দর একটা PDF রিপোর্ট কার্ড তৈরি হয়ে যাবে (হেডার, সার্চ বক্স, ফুটার প্রিন্টে দেখাবে না, শুধু রিপোর্ট কার্ডটাই থাকবে)।
 
 ## নোটিশ টেক্সট পরিবর্তন
 
