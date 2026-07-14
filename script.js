@@ -1,6 +1,12 @@
 // ---- কনফিগ ----
 // META_COLUMNS: এগুলো বিষয় (subject) হিসেবে গণ্য হবে না, বাকি সব কলাম বিষয় হিসেবে দেখানো হবে
-const META_COLUMNS = ["class", "roll", "name", "father", "father name", "remarks", "gpa", "result"];
+const META_COLUMNS = [
+  "class", "roll", "name",
+  "father", "father name", "father's name", "fathers name",
+  "session", "dob", "date of birth",
+  "remarks", "gpa", "result",
+  "percentage", "total", "grand total", "average"
+];
 
 let allRows = [];
 let isAdminLoggedIn = false;
@@ -112,8 +118,12 @@ function buildReportCardHTML(row){
           <div class="student-row"><span>নাম (Name):</span><b>${row["name"] || "-"}</b></div>
           <div class="student-row"><span>শ্রেণী (Class):</span><b>${row["class"] || "-"}</b></div>
           <div class="student-row"><span>রোল (Roll No):</span><b>${toBnDigits(row["roll"] || "-")}</b></div>
+          <div class="student-row"><span>সেশন (Session):</span><b>${row["session"] || "-"}</b></div>
+          <div class="student-row"><span>জন্ম তারিখ (DOB):</span><b>${row["dob"] || row["date of birth"] || "-"}</b></div>
+          <div class="student-row"><span>পিতার নাম (Father's Name):</span><b>${row["father's name"] || row["fathers name"] || row["father name"] || row["father"] || "-"}</b></div>
         </div>
 
+        <div class="table-scroll">
         <table class="marks-table">
           <thead>
             <tr><th>SUBJECT</th><th>MAX MARKS</th><th>OBTAINED</th><th>PERCENTAGE</th><th>GRADE</th><th>RESULT</th></tr>
@@ -130,6 +140,7 @@ function buildReportCardHTML(row){
             </tr>
           </tfoot>
         </table>
+        </div>
 
         <div class="remarks-box">
           <span>মন্তব্য (Remarks):</span> <em>${remarks}</em>
