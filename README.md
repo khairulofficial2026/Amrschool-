@@ -7,19 +7,21 @@
 প্রতিটা শীটে প্রথম সারিতে (row 1) এই কলাম হেডারগুলো বসান — বানান হুবহু এমনই হতে হবে:
 
 ```
-Class | Roll | Name | Bangla | English | Math | Remarks
+Class | Roll | Name | Session | DOB | Father's Name | Bangla | English | Math | Remarks
 ```
 
 - **Class, Roll, Name** — এই কলামগুলোর নাম বদলাবেন না।
+- **Session, DOB, Father's Name** — এইগুলো ঐচ্ছিক (না দিলেও চলবে, ফাঁকা দেখাবে "-")। DOB তে সরাসরি যেভাবে লিখতে চান সেভাবেই লিখুন (যেমন ১২/০৫/২০২০), সাইট নিজে থেকে ফরম্যাট বদলাবে না।
 - **Bangla, English, Math...** — এই বিষয়গুলোতে শুধু নাম্বার (যেমন ৯৫, ৮৮) বসাবেন, ১০০ এর মধ্যে। বিষয় ইচ্ছামতো যোগ/বাদ দিতে পারবেন — কিন্তু নতুন বিষয় যোগ করলে `config.js` এর `SUBJECT_LABELS` এ সেটার বাংলা নামও যোগ করে দিতে হবে (নাহলে ইংরেজি কলাম নামটাই দেখাবে)।
 - **Remarks** (ঐচ্ছিক) — শিক্ষকের মন্তব্য, ফাঁকা রাখলে অটো মন্তব্য বসবে।
 - GPA, গ্রেড, পাশ/ফেল — এসব **স্বয়ংক্রিয়ভাবে হিসাব হয়ে যাবে**, আলাদা কলাম লাগবে না।
 - প্রতিটা শীটে "Class" কলামে ওই শীটের ক্লাসের নাম বসান (যেমন Play Sheet এ সব রো তে "Play Group", Nursery Sheet এ সব রো তে "Nursery")।
+- ⚠️ **Percentage, Total, Grand Total, Average** নামে কোনো কলাম Sheet এ থাকলে সেটা বিষয় হিসেবে টেবিলে দেখাবে না (এগুলো অটো ক্যালকুলেটেড, তাই আলাদা কলাম না রাখাই ভালো — রাখলেও সমস্যা নেই, সাইট নিজে থেকে বাদ দিয়ে দেবে)।
 
 উদাহরণ:
 ```
-Class      Roll  Name             Bangla  English  Math  Remarks
-Play Group 1     Samiul Islam Aarav  95    92       88    চমৎকার ফলাফল!
+Class      Roll  Name             Session   DOB         Father's Name   Bangla  English  Math  Remarks
+Play Group 1     Samiul Islam Aarav 2025-26  01/01/2021  Karim Hasan     95      92       88    চমৎকার ফলাফল!
 ```
 
 ## ধাপ ২: প্রতিটা Google Sheet পাবলিশ করুন (CSV হিসেবে)
