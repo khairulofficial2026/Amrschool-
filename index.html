@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>সততা প্রি ক্যাডেট স্কুল | ফলাফল পোর্টাল</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Tiro+Bangla:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,22 +23,15 @@
         </svg>
       </div>
       <h1>সততা প্রি ক্যাডেট স্কুল</h1>
-   <p>নলিন বাজার, গোপালপুর,টাঙ্গাইল</p>
+      <p>নলিন বাজার, গোপালপুর, টাঙ্গাইল</p>
       <p>পরীক্ষা - ফলাফল প্রকাশনা পোর্টাল</p>
-</header>
+    </header>
 
     <div class="ticker no-print">
       <span class="ticker-badge">📢 নোটিশঃ</span>
       <div class="ticker-track">
-        <span id="tickerText">🎓🚧 সততা প্রি-ক্যাডেট স্কুলে ২০২৭ শিক্ষাবর্ষে ভর্তি চলছে! আমাদের ওয়েবসাইটটি বর্তমানে টেস্টিং ও উন্নয়নের পর্যায়ে রয়েছে। ভর্তি সংক্রান্ত যেকোনো তথ্যের জন্য সরাসরি বিদ্যালয়ে যোগাযোগ করুন। ধন্যবাদ।</span>
+        <span id="tickerText">📢 সততা প্রি-ক্যাডেট স্কুলের ২য় সেমিস্টার পরীক্ষার রুটিন প্রকাশিত হয়েছে। 🎓🚧 সততা প্রি-ক্যাডেট স্কুলে ২০২৭ শিক্ষাবর্ষে ভর্তি চলছে! আমাদের ওয়েবসাইটটি বর্তমানে টেস্টিং ও উন্নয়নের পর্যায়ে রয়েছে। ভর্তি সংক্রান্ত যেকোনো তথ্যের জন্য সরাসরি বিদ্যালয়ে যোগাযোগ করুন। ধন্যবাদ।</span>
       </div>
-    </div>
-
-    <!-- ============ ভর্তি ফরম ডাউনলোড বাটন ============ -->
-    <div class="admission-download-wrap no-print">
-      <a href="admission-form.pdf" download class="btn-primary admission-download-btn">
-        <span class="icon">⬇️</span> ভর্তি ফরম ডাউনলোড করুন
-      </a>
     </div>
 
     <main class="wrap">
@@ -60,6 +53,10 @@
         </button>
 
         <p id="statusMsg" class="status-msg"></p>
+
+        <button id="viewRoutineBtn" class="btn-secondary">
+          <span class="icon">📅</span> পরীক্ষার রুটিন দেখুন
+        </button>
       </section>
     </main>
 
@@ -67,22 +64,42 @@
       <p>© 2026 সততা প্রি ক্যাডেট স্কুল — সকল অধিকার সংরক্ষিত</p>
     </footer>
   </div>
+  
+  <div style="text-align: center; padding: 10px; font-family: sans-serif; font-size: 14px; color: #666;" class="no-print"><p>Developed by <a href="https://khairulislamjuseb.vercel.app/" target="_blank" style="color: #007bff; text-decoration: none; font-weight: bold;">[Signature]</a></p>
+</div>
+
 
   <!-- ============ পেইজ ২: রেজাল্ট পেইজ (একক শিক্ষার্থী) ============ -->
   <div id="resultPage" class="page">
-    <main class="wrap">
+    <main class="wrap wrap-report">
       <button id="backBtn" class="btn-back no-print">← আবার খুঁজুন</button>
 
       <section class="card result-card">
         <div id="reportContainer"></div>
-        <button id="downloadBtn" class="btn-primary no-print">⬇️ ডাউনলোড করুন (PDF)</button>
-        <button id="printBtn" class="btn-secondary no-print">🖨️ প্রিন্ট করুন</button>
+        <div class="result-actions no-print">
+          <button id="downloadBtn" class="btn-primary">⬇️ ডাউনলোড করুন (PDF)</button>
+          <button id="printBtn" class="btn-secondary">🖨️ প্রিন্ট করুন</button>
+        </div>
         <p id="downloadStatus" class="status-msg"></p>
       </section>
     </main>
   </div>
 
-  <!-- ============ পেইজ ৩: এডমিন প্যানেল ============ -->
+  <!-- ============ পেইজ ৩: পরীক্ষার রুটিন ============ -->
+  <div id="routinePage" class="page">
+    <main class="wrap wrap-report">
+      <button id="routineBackBtn" class="btn-back no-print">← মূল পেইজে ফিরে যান</button>
+
+      <section class="card result-card">
+        <div id="routineContainer"></div>
+        <div class="result-actions no-print">
+          <button id="routinePrintBtn" class="btn-secondary">🖨️ প্রিন্ট করুন</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ পেইজ ৪: এডমিন প্যানেল ============ -->
   <div id="adminPage" class="page">
     <main class="wrap">
       <button id="adminBackBtn" class="btn-back no-print">← মূল পেইজে ফিরে যান</button>
